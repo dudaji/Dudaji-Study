@@ -34,7 +34,7 @@ class DataSourceDecorator(DataSource):
         self.wrappee.write_data(data)
 
     def read_data(self):
-        self.wrappee.read_data()
+        return self.wrappee.read_data()
 
 
 class EncryptionDecorator(DataSourceDecorator):
@@ -42,7 +42,7 @@ class EncryptionDecorator(DataSourceDecorator):
         super().write_data(self.encode(data))
 
     def read_data(self):
-        self.decode(super().read_data())
+        return self.decode(super().read_data())
 
     def encode(self, data):
         data_bytes = data.encode('utf-8')
@@ -51,7 +51,8 @@ class EncryptionDecorator(DataSourceDecorator):
         return data_base64_str
 
     def decode(self, data):
-        data_bytes = base64.b64decode(data)
+        data_base64 = data.encode('utf-8')
+        data_bytes = base64.b64decode(data_base64)
         data_decoded = data_bytes.decode('utf-8')
         return data_decoded
 
@@ -61,17 +62,16 @@ class CompressionDecorator(DataSourceDecorator):
         super().write_data(self.compress(data))
 
     def read_data(self):
-        self.decompress(super().read_data())
+        return self.decompress(super().read_data())
 
     def compress(self, data):
         data_bytes = data.encode("utf-8")
-        compress_data = zlib.compress(data_bytes)
-        print(compress_data, type(compress_data))
-        compress_data_str = compress_data.decode("zlib_codec")
-        return compress_data_str
+        data_compressed = zlib.compress(data_bytes)
+        data_compressed_str = ''.join(map(chr, data_compressed))
+        return data_compressed_str
 
     def decompress(self, data):
-        data_bytes_str = data.encode()
+        data_bytes_str = bytearray([ord(x) for x in data])
         data_bytes = zlib.decompress(data_bytes_str)
-        data_decompressed = data_bytes.decode()
+        data_decompressed = data_bytes.decode('utf-8')
         return data_decompressed
