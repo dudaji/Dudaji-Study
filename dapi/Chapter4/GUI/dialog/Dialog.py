@@ -7,11 +7,12 @@ class Dialog(ABC):
         pass
     
     def render(self) -> str:
-        button = self.createButton().render()
+        button = self.createButton()
+        button_ui = button.render()
         dialog_name = type(self).__name__
         dash_length = int((36 - len(dialog_name))/2)
         
-        space_length = int((34 - len(button))/2)
+        space_length = int((34 - len(button_ui))/2)
         return ("-"*dash_length
                 + dialog_name
                 + "-"*dash_length
@@ -20,9 +21,9 @@ class Dialog(ABC):
                 + "|                                  |\n"
                 + "|" 
                 + " "*space_length 
-                + button 
+                + button_ui 
                 + " "*space_length 
-                + (" " if len(button) % 2 == 1 else "")
+                + (" " if len(button_ui) % 2 == 1 else "")
                 + "|\n"
                 + "|                                  |\n"
-                + "------------------------------------\n")
+                + "------------------------------------\n" + button.onClick())

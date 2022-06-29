@@ -57,7 +57,8 @@ class GUITest(unittest.TestCase):
                                                         + "|                                  |\n"
                                                         + "|          Window Button           |\n"
                                                         + "|                                  |\n"
-                                                        + "------------------------------------\n"))
+                                                        + "------------------------------------\n" 
+                                                        + self.window_button.onClick()))
     
     def test_html_dialog_createButton(self):
         print("Check HtmlDialog createButton method")
@@ -70,7 +71,8 @@ class GUITest(unittest.TestCase):
                                                        + "|                                  |\n"
                                                        + "|   <button>HTML Button</button>   |\n"
                                                        + "|                                  |\n"
-                                                       + "------------------------------------\n"))
+                                                       + "------------------------------------\n" 
+                                                       + self.html_button.onClick()))
     
 
 if __name__ == '__main__':
