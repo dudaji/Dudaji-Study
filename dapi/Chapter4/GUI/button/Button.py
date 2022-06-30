@@ -2,9 +2,9 @@ from abc import ABC, abstractmethod
 
 class Button(ABC):
     @abstractmethod
-    def render():
+    def render(self):
         pass
     
     @abstractmethod
-    def onClick():
+    def onClick(self):
         pass

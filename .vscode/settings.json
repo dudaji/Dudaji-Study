@@ -82,5 +82,14 @@
     "memory_resource": "cpp",
     "stop_token": "cpp"
   },
-  "cmake.configureOnOpen": false
+  "cmake.configureOnOpen": false,
+  "python.linting.pylintEnabled": true,
+  "python.linting.enabled": true,
+  "python.linting.lintOnSave": true,
+  "editor.formatOnSave": true,
+  "python.formatting.provider": "black",
+  "python.formatting.blackArgs": [
+    "--line-length",
+    "80"
+  ]
 }
