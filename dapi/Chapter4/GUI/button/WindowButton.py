@@ -1,5 +1,6 @@
 from button.Button import Button
 
+
 class WindowButton(Button):
     def render(self):
         return "Window Button"
