@@ -164,8 +164,6 @@ class CrossPlatformGUITest(unittest.TestCase):
         viewer = Viewer()
         button = button.render()
         notchecked_checkbox = checkbox.render()
-        checkbox.on_check()
-        checked_checkbox = checkbox.render()
 
         self.assertEqual(viewer.render_all(), "\n")
         viewer.create_button()
