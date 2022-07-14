@@ -10,6 +10,4 @@ class WindowsCheckbox(Checkbox):
         self.box = [content]
 
     def render(self):
-        for y, line in enumerate(self.box):
-            for x, ch in enumerate(line):
-                pass
+        self.parent.renderItem(self)

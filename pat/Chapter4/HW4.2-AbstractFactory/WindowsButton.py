@@ -1,4 +1,3 @@
-from re import L
 from Button import Button
 
 
@@ -12,6 +11,4 @@ class WindowsButton(Button):
         self.box = [border, content, border]
 
     def render(self):
-        for y, line in enumerate(self.box):
-            for x, ch in enumerate(line):
-                pass
+        self.parent.renderItem(self)

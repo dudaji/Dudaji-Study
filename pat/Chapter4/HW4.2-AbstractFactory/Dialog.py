@@ -9,8 +9,9 @@ class Dialog(ABC):
         self.message = message
         self.items = []
         self.createCheckbox(self, "Checkbox1")
-        self.createButton(self, 20, 5, "OK")
-        self.createButton(self, 20, 15, "Cancel")
+        self.createCheckbox(self, "Checkbox2")
+        self.createButton(self, 15, 5, "OK")
+        self.createButton(self, 10, 35, "Cancel")
 
     @abstractmethod
     def renderWindow(self):
