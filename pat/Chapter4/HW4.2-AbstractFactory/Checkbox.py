@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 
-class Checkbox(ABC):
 
+class Checkbox(ABC):
     def __init__(self, parent, text: str):
         self.parent = parent
         self.text = text
