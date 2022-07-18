@@ -1,0 +1,11 @@
+{
+    "python.linting.pylintEnabled": true, // pylint 사용을 위한 설정
+    "python.linting.enabled": true, // linter 활성화 
+    "python.linting.lintOnSave": true, // 파일 저장시 linter 실행 
+    "editor.formatOnSave": true, // 파일 저장시 formatter 실행 
+    "python.formatting.provider": "black", // formatter로 black 사용
+    "python.formatting.blackArgs": [ // pylint 기본 line length 설정
+        "--line-length",
+        "80"
+    ]
+}
