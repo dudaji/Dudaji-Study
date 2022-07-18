@@ -2,6 +2,8 @@ from threading import Thread
 import time
 import unittest
 from singleton.singleton import SafeSingleton
+from observer.observer import NotificationObserver
+
 
 class SingletonTest(unittest.TestCase):
     @classmethod
@@ -26,20 +28,46 @@ class SingletonTest(unittest.TestCase):
 
         def test_singleton(value, results, index):
             singleton = SafeSingleton(value)
-            # singleton.set_value(value)
-            print(singleton.value)
             results[index] = singleton.value
 
         s = SafeSingleton()
         s.delete_instance()
         results = [None] * 2
-        process1 = Thread(target=test_singleton, args=("FOO", results, 0, ))
-        process2 = Thread(target=test_singleton, args=("BAR", results, 1, ))
+        process1 = Thread(
+            target=test_singleton,
+            args=(
+                "FOO",
+                results,
+                0,
+            ),
+        )
+        process2 = Thread(
+            target=test_singleton,
+            args=(
+                "BAR",
+                results,
+                1,
+            ),
+        )
         process1.start()
         process2.start()
-        print(results[0], results[1])
         time.sleep(0.25)
         self.assertEqual(results[0], results[1])
+
+    def test_observermanager_in_safe_singleton(self):
+        s = SafeSingleton()
+        s.delete_instance()
+
+        o = NotificationObserver("hello")
+        self.assertEqual(o.value, "hello")
+        self.assertEqual(s.value, None)
+        self.assertNotEqual(s.value, o.value)
+
+        s.subscribe(o)
+        s.update_value("hi")
+
+        self.assertEqual(s.value, "hi")
+        self.assertEqual(s.value, o.value)
 
 
 if __name__ == "__main__":
