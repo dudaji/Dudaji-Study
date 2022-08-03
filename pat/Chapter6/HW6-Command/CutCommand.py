@@ -1,7 +1,7 @@
 from Command import Command
 
 
-def CutCommand(Command):
+class CutCommand(Command):
     def execute(self):
         if self.editor.textField.getSelectedText().isEmpty():
             return False

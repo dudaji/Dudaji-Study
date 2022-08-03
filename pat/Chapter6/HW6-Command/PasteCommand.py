@@ -1,9 +1,9 @@
 from Command import Command
 
 
-def PasteCommand(Command):
+class PasteCommand(Command):
     def execute(self):
-        if self.editor.clipboard == None or self.editor.clipboard.isEmpty():
+        if self.editor.clipboard is None or self.editor.clipboard.isEmpty():
             return False
 
         self.backup()
