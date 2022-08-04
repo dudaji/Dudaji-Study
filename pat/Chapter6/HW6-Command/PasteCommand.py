@@ -3,11 +3,9 @@ from Command import Command
 
 class PasteCommand(Command):
     def execute(self):
-        if self.editor.clipboard is None or self.editor.clipboard.isEmpty():
+        if self.editor.clipboard == "":
             return False
 
         self.backup()
-        self.editor.textField.insert(
-            self.editor.clipboard, self.editor.textField.getCaretPosition()
-        )
+        self.editor.textedit.textCursor().insertText(self.editor.clipboard)
         return True

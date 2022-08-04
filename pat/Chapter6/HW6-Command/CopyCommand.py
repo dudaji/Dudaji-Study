@@ -3,5 +3,6 @@ from Command import Command
 
 class CopyCommand(Command):
     def execute(self):
-        self.editor.clipboard = self.editor.textField.getSelectedText()
+        cursor = self.editor.textedit.textCursor()
+        self.editor.clipboard = self.editor.textedit.textCursor().selectedText()
         return False
